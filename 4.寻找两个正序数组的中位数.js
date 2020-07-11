@@ -11,6 +11,7 @@
  * @return {number}
  */
 var findMedianSortedArrays = function(nums1, nums2) {
+    1
 };
 // @lc code=end
 
