@@ -16,7 +16,7 @@ var threeSum = function(nums) {
 
     let arr = [];
 
-    nums = nums.sort((a,b)=>{return a-b})
+    nums.sort((a,b)=>{return a-b})
     if(nums[0] == nums[nums.length-1] && nums[0] == 0){
         return [[0,0,0]]
     }
