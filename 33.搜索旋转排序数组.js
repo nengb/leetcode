@@ -15,14 +15,15 @@ var search = function(nums, target) {
     if(target == nums[0]){
         return 0;
     }
+    if(target == nums[nums.length-1]){
+        return nums.length-1
+    }
 
     let l = 0;
     let r = nums.length-1;
     let mid = Math.floor((l+r)/2);
-    //是否偏左
-    let inLeft = target > nums[0] ;
 
-    while(l<r){
+    while(l<=r){
         if(nums[mid] == target){
             return mid;
         }
@@ -30,52 +31,21 @@ var search = function(nums, target) {
         let leftMid = Math.floor((l+mid)/2);
         //右边中位数
         let rightMid = Math.floor((mid+r)/2);
-        //旋转点中位数附近
-        if(nums[leftMid] > nums[rightMid]){
-            if(inLeft){
-                r = mid;
-            }else{
-                l = mid;
-            }
-        //旋转点可能在最左边或者最右边，离中位数较远
-        }else if(nums[leftMid] < nums[rightMid]){
-            
-
-
+        if(nums[leftMid] == target) return leftMid;
+        if(nums[rightMid] == target) return rightMid;
+        
+        if(nums[leftMid] == nums[rightMid]) return -1;
+        if( (target > nums[0] && nums[mid]>nums[0] && target>nums[mid] ) ||
+            (target <= nums[0] && (nums[mid]>nums[0] || target>nums[mid]) )
+        ){
+            l = mid;
         }else{
-            return -2
-        }
-
-
-
-        if(nums[mid] > target){
-            if(nums[leftMid] < nums[rightMid]){
-                l = leftMid ;
-                r = mid;
-            }else if(nums[leftMid] > nums[rightMid]){
-                l = mid ;
-                r = rightMid;
-            }else{
-                return -2
-            }
-
-        }else if(nums[mid] < target){
-            if(nums[leftMid] < nums[rightMid]){
-                l = mid ;
-                r = rightMid;
-            }else if(nums[leftMid] > nums[rightMid]){
-                l = leftMid ;
-                r = mid;
-            }else{
-                return -3
-            }
-        }else{
-            return mid;
+            r = mid;
         }
 
         mid = Math.floor((l+r)/2);
     }
-    return mid
+    return -1
 };
 // @lc code=end
 

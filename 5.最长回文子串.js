@@ -36,7 +36,10 @@
  * @return {string}
  */
 var longestPalindrome = function(s) {
-
+    if(s.length<=1){
+        return s
+    }   
+    
 };
 // @lc code=end
 
