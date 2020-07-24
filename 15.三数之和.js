@@ -36,6 +36,7 @@ var threeSum = function(nums) {
                 r--;
                 continue;
             }
+
             if( nums[i]+nums[l] > -nums[r]){
                 r--;
             }else if(nums[i]+nums[l] == -nums[r]){
@@ -52,5 +53,7 @@ var threeSum = function(nums) {
     
     return arr
 };
+
+
 // @lc code=end
 

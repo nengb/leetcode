@@ -37,9 +37,44 @@
  */
 var longestPalindrome = function(s) {
     if(s.length<=1){
-        return s
+        return s;
+    }
+    if(s.length == 2){
+        if(s[0] == s[1]){
+            return s
+        }else{
+            return s[0]
+        }
     }   
-    
+
+    let maxStr = s[0]
+    for(let i=0;i<s.length-1;i++){
+        if(i<=s.length-3 &&  s[i] == s[i+2]){
+           let str = centerSpread(s,i,i+2,s[i]+s[i+1]+s[i+2])
+            maxStr.length<str.length?maxStr = str:null
+        }
+        if(s[i]==s[i+1]){
+           let str = centerSpread(s,i,i+1,s[i]+s[i+1])
+            maxStr.length<str.length?maxStr = str:null
+        }
+    }
+
+   return maxStr
 };
+//中心扩展
+function centerSpread(s,l,r,char){
+    while(l>=0 || r<=s.length-1){
+        l--;
+        r++;
+        if(s[l] && s[l]==s[r] ){
+            char = s[l]+char+s[r];
+        }else{
+            break;
+        }
+    }
+
+    return char
+}
+
 // @lc code=end
 
