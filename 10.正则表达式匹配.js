@@ -20,8 +20,24 @@ var isMatch = function(s, p) {
     return true;
 };
 
-function dfs(){
-    
+function dfs(s,p,s_index=0,p_index=0){
+    let result = false;
+    while(s_index <s.length || p_index <p.length){
+        if(p[p_index] == '*'){
+           result = dfs(s.slice(1,s.length),s_index,p_index)
+        }else if(p[p_index] == '.'){
+            return true;
+        }else{
+            if(p[p_index] != s[s_index]){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        s_index ++;
+        p_index ++;
+    }
+    return result
 }
 // @lc code=end
 
